@@ -6,9 +6,18 @@ var LIST = [
 
 var BTN = document.getElementById("myButton");
 
-for(var i = 0; i<3;i++){
-    var newBTN = BTN.cloneNode(true);
-    newBTN.innerHTML =
-    document.body.append(newBTN);
-    alert("Check me out" + LIST[i]);
+var doSomething = function(event){
+    //alert("Praise Me!");
+    console.log(event);
+    console.log("hello world");
 }
+
+
+for(var i = 0; i< 3;i++){
+    var newBTN = BTN.cloneNode(true);
+    document.body.append(newBTN);
+    newBTN.addEventListener("click", doSomething);
+}
+
+
+
