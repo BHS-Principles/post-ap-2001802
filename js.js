@@ -1,3 +1,7 @@
+//make 4 buttons
+//clone them
+
+
 var LIST = [
     "1",
     "2",
@@ -13,7 +17,7 @@ var doSomething = function(event){
 }
 
 
-for(var i = 0; i< 3;i++){
+for(var i = 0; i< 9;i++){
     var newBTN = BTN.cloneNode(true);
     document.body.append(newBTN);
     newBTN.addEventListener("click", doSomething);
