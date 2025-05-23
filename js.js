@@ -17,7 +17,7 @@ var doSomething = function(event){
 }
 
 
-for(var i = 0; i< 9;i++){
+for(var i = 0; i< 3;i++){
     var newBTN = BTN.cloneNode(true);
     document.body.append(newBTN);
     newBTN.addEventListener("click", doSomething);
