@@ -1,27 +1,21 @@
 //make 4 buttons
 //clone them
 
+var HTML = document.getElementById("myFrame");
 
-var LIST = [
-    "1",
-    "2",
-    "3",
+var FRAMES = [
+
 ];
 
-var BTN = document.getElementById("myButton");
-
-var doSomething = function(event){
-    //alert("Praise Me!");
+var somethingElse = function(event, data){
     console.log(event);
-    console.log("hello world");
-}
-
-
-for(var i = 0; i< 3;i++){
-    var newBTN = BTN.cloneNode(true);
-    document.body.append(newBTN);
-    newBTN.addEventListener("click", doSomething);
-}
-
-
+    console.log(data);
+    alert("frame1 works??");
+};
+for(var count = 0; count < FRAMES.length; count++){
+    var copy=HTML.cloneNode(true);
+    copy.addEventListener("click",(e)=>{somethingElse(e,d)})
+    document.body.append(copy);
+};
+alert("test")
 
