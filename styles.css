@@ -1,1 +1,13 @@
-body{background-color: yellow;}
+body{background-color: pink;}
+body *{
+    display: inline-block;
+    position: relative;
+}
+.card{
+    width: 10rem;
+    height: 15rem;
+    background-color: green;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/55/Atlasnye_playing_cards_deck.svg);
+    background-size: 1300% 400%;
+    background-position: 0% 500%;
+}
