@@ -1,21 +1,21 @@
-//make 4 buttons
-//clone them
-
 var HTML = document.getElementById("myFrame");
 
-var FRAMES = [
+var FRAMES = 5;
 
-];
-
-var somethingElse = function(event, data){
+var doSomething = function(event, data){
     console.log(event);
     console.log(data);
-    alert("frame1 works??");
+    alert("FRame me up before you go go");
 };
-for(var count = 0; count < FRAMES.length; count++){
-    var copy=HTML.cloneNode(true);
-    copy.addEventListener("click",(e)=>{somethingElse(e,d)})
+
+for(var count = 0; count < FRAMES; count++ )
+{
+    var d = FRAMES;
+    var copy = HTML.cloneNode(true);
+    copy.addEventListener("click", (e)=>{ doSomething(e,d) } );
+
     document.body.append(copy);
-};
-alert("test")
+
+}
+alert("?????");
 
