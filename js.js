@@ -1,21 +1,8 @@
-var HTML = document.getElementById("myFrame");
-
-var FRAMES = 5;
-
-var doSomething = function(event, data){
-    console.log(event);
-    console.log(data);
-    alert("FRame me up before you go go");
-};
-
-for(var count = 0; count < FRAMES; count++ )
-{
-    var d = FRAMES;
-    var copy = HTML.cloneNode(true);
-    copy.addEventListener("click", (e)=>{ doSomething(e,d) } );
-
-    document.body.append(copy);
+draw = 2
+for(i=0;i<=draw;i++){
 
 }
-
+/*
+formula, 100% = king for every additional 100% subtract one from card sheet ie... 200% = queen, 700% = 7
+*/
 
