@@ -17,5 +17,5 @@ for(var count = 0; count < FRAMES; count++ )
     document.body.append(copy);
 
 }
-alert("?????");
+
 
