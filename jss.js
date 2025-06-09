@@ -1,17 +1,37 @@
 var TEMP = document.getElementById("temp");
-var TARGET = document.getElementById("target");
 var CARD = TEMP.querySelector(".card");
+var TARGET = document.getElementById("target");
 
-/*
-var cardCount = 52;
-for(var i=0;i<cardCount-2;i++){
-    var cardCopy = CARD.cloneNode(true);
-    cardCopy.innerHTML = "" + (i+1);
-    cardCopy.style.backgroundPositionX = -i%13 + "00%";
-    cardCopy.style.backgroundPositionY = -i%4 + "00%";
-    TARGET.append(cardCopy);
-}
-*/
+
+class Player{
+    constructor(){
+
+    }
+};
+
+class Deck{
+    constructor(num){
+        this.cardCount = num;
+        this.cards = [];
+        this.make();
+    };
+
+    make(){
+        
+
+        for(var i=0;i<this.cardCount;i++){
+            var card = new Card(i);
+            this.cards.push(card);
+        }
+
+        return this.cards;
+    }
+    shuffle(){
+        for(var i=0;i<this.cardCount;i++){
+            i+= deck.Cards;
+        }
+    }
+};
 
 class Card{
     constructor(num){
@@ -29,33 +49,9 @@ class Card{
     }
 };
 
-var makeDeck = function(howMany){
-    var deck = [];
 
-    for(var i=0;i<howMany;i++){
-        var card = new Card(i);
-        deck.push(card);
-    }
 
-    return deck;
-};
-
-var shuffledDeck = function(deck){
-    for(var i=0;i<deck.length;i++){
-        var rnd = Math.floor(Math.random()*deck.length);
-
-        var card1 = deck[i];
-        var card2 = deck[rnd];
-        deck[rnd] = card1;
-        deck[i] = card2;
-        //cards need to switch positions
-
-    };
-    
-    return deck;
-};
-
-var DECK = makeDeck(52);
-shuffledDeck(DECK);
-console.log(DECK);
-DECK[0].draw();
+var marieAntoinet = new Deck(52);
+marieAntoinet.cards[0].draw();
+var williamOfOrange = new Card(25);
+williamOfOrange.draw();
