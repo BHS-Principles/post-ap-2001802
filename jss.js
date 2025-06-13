@@ -4,6 +4,7 @@ var TARGET = document.getElementById("target");
 
 class Game{
     constructor(players, deck){
+        this.table = document.getElementById("target");
         this.players = players;
         this.deck = deck;
         this.activePlayer = players[0];
@@ -18,46 +19,31 @@ class Game{
         this.deck.shuffle();
 
         for(var i=0;i<this.players.length;i++){
+            //this.players[i].joinGame(this);
             this.deck.giveCard(this.players[i]);
             //alert("game gave this " + this.player[i].name + " a card");
         }
         while(this.gameOn()){
-                alert(this.activePlayer.name + " is still playing");
+            this.updateScreen();
+            alert(this.activePlayer.name + " is still playing");
         }
-        while(!this.gameOn()){
-            this.winner = this.activePlayer;
-            alert("We win!! " + this.activePlayer.name);
-            var card1 = this.player[0].card.id;
-            var card2 = this.player[1].card.id;
-            console.log("checkpoint1")
-            if(card1 > card2){
-                this.winner = this.player[0];
-                return this.player[0]
-            }
-            if(card1 < card2){
-                this.winner = this.player[1];
-                return this.player[1]
-            }
-            else{
-                this.winner = "draw";
-                return "draw"
-            }
-        }
-       /* 
-        var whoWon = function()
-        {
         
-            
-            
-        }
-
+        this.whoWon();
         alert("game over")
-        */
+        
+        
     }
+    updateScreen(){
+        //check for layers
+        for(var p=0;p<this.players.length;p++)
+            this.players[p].illustrate();
+    }
+        
+
     gameOn(){
         this.activePlayer = this.players[this.turn%this.players.length];
         this.turn++;
-        return this.turn < 7;
+        return this.turn < 2;
     }
 }
 
@@ -70,6 +56,16 @@ class Player{
     //stuff player can do
     illustrate(){
 
+        var dom = document.createElement("div");
+        dom.classList.add("player");
+        dom.id = "player_" + this.name;
+
+        dom.innerHTML = this.name;
+        for(var c=0;c<this.hand.length;c++){
+            var card = this.hand[c];
+            card.illustrate(dom);
+        }
+        this.inGame.table.append(dom);
     }
     take(card){
         this.hand.push(card);
@@ -106,6 +102,10 @@ class Deck{
         player.take(card);
         alert('I delt to: ' + player.name);
     }
+    //joinGame(game){
+        //alert("joined game")
+        //this.inGame = game;
+    //}
     
 }
 
@@ -116,7 +116,8 @@ class Card{
         this.value = num % 13;
         this.pic = "mine.svg";
     }
-    draw(){
+    illustrate(target){
+        target = target || TARGET;
         var cardCopy = CARD.cloneNode(true);
         cardCopy.innerHTML = "" + (this.id);
         cardCopy.style.backgroundPositionX = -this.id%13 + "00%";
