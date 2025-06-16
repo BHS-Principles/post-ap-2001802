@@ -20,16 +20,18 @@ class Game{
 
         for(var i=0;i<this.players.length;i++){
             //this.players[i].joinGame(this);
-            this.deck.giveCard(this.players[i]);
+            
+            this.players[i].joinGame(this);
+            this.players[i].take(this.deck.giveCard());
+            //alert("I gave " + this.players[i].name + " a card");
             //alert("game gave this " + this.player[i].name + " a card");
         }
         while(this.gameOn()){
             this.updateScreen();
-            alert(this.activePlayer.name + " is still playing");
+            //alert(this.activePlayer.name + " is still playing");
         }
         
-        this.whoWon();
-        alert("game over")
+        
         
         
     }
@@ -38,7 +40,11 @@ class Game{
         for(var p=0;p<this.players.length;p++)
             this.players[p].illustrate();
     }
-        
+    whoWon(){
+        this.winner = this.activePlayer;
+        alert("notif")
+        return this.activePlayer;
+    }
 
     gameOn(){
         this.activePlayer = this.players[this.turn%this.players.length];
@@ -54,9 +60,13 @@ class Player{
         this.hand = [];
     }
     //stuff player can do
+    joinGame(game){
+        alert("joined game")
+        this.inGame = game;
+    }
     illustrate(){
 
-        var dom = document.createElement("div");
+        var dom = document.getElementById("player_ " + this.name) || document.createElement("div");
         dom.classList.add("player");
         dom.id = "player_" + this.name;
 
@@ -67,6 +77,7 @@ class Player{
         }
         this.inGame.table.append(dom);
     }
+    
     take(card){
         this.hand.push(card);
         alert(this.name + " got " + card.id)
@@ -120,10 +131,10 @@ class Card{
         target = target || TARGET;
         var cardCopy = CARD.cloneNode(true);
         cardCopy.innerHTML = "" + (this.id);
-        cardCopy.style.backgroundPositionX = -this.id%13 + "00%";
-        cardCopy.style.backgroundPositionY = -this.id%4 + "00%";
-        TARGET.append(cardCopy);
-    }
+        cardCopy.style.backgroundPositionX = -(this.id) + "00%"
+        cardCopy.style.backgroundPositionY = Math.floor(this.id/13) + "00%";
+
+
 }
 
 
