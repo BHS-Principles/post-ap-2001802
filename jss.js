@@ -29,8 +29,8 @@ class Game{
         }
         
         while(!this.gameOn()){
-            this.winner = this.activePlayer;
-            alert(this.winner.name + " wins!");
+            this.winner = this.activePlayer.name;
+            alert(this.winner + " wins!")
             return this.winner;
         }
         
@@ -100,8 +100,8 @@ class Deck{
         }
     }
     giveCard(player){
-        var card = this.cards[this.cards.length-1];
-        this.cards.length = this.cards.length -1
+        var card = this.cards[Math.floor(Math.random() * 52)];
+        //this.cards.length = this.cards.length -1
         player.take(card);
         alert('I delt to: ' + player.name);
     }
@@ -133,5 +133,6 @@ class Card{
 
 var steve = new Player("Steve");
 var sue = new Player("Sue");
+var mark = new Player("Mark")
 var myDeck = new Deck(52);
-new Game([steve,sue],myDeck);
+new Game([steve,sue,mark],myDeck);
