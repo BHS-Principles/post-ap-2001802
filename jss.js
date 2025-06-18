@@ -19,19 +19,20 @@ class Game{
         this.deck.shuffle();
 
         for(var i=0;i<this.players.length;i++){
-            //this.players[i].joinGame(this);
             
-            this.players[i].joinGame(this);
-            this.players[i].take(this.deck.giveCard());
-            //alert("I gave " + this.players[i].name + " a card");
+            this.deck.giveCard(this.players[i]);
             //alert("game gave this " + this.player[i].name + " a card");
         }
         while(this.gameOn()){
             this.updateScreen();
-            //alert(this.activePlayer.name + " is still playing");
+            alert(this.activePlayer.name + " is still playing");
         }
         
-        
+        while(!this.gameOn()){
+            this.winner = this.activePlayer;
+            alert(this.winner.name + " wins!");
+            return this.winner;
+        }
         
         
     }
@@ -40,11 +41,7 @@ class Game{
         for(var p=0;p<this.players.length;p++)
             this.players[p].illustrate();
     }
-    whoWon(){
-        this.winner = this.activePlayer;
-        alert("notif")
-        return this.activePlayer;
-    }
+        
 
     gameOn(){
         this.activePlayer = this.players[this.turn%this.players.length];
@@ -60,13 +57,9 @@ class Player{
         this.hand = [];
     }
     //stuff player can do
-    joinGame(game){
-        alert("joined game")
-        this.inGame = game;
-    }
     illustrate(){
 
-        var dom = document.getElementById("player_ " + this.name) || document.createElement("div");
+        var dom = document.createElement("div");
         dom.classList.add("player");
         dom.id = "player_" + this.name;
 
@@ -75,9 +68,8 @@ class Player{
             var card = this.hand[c];
             card.illustrate(dom);
         }
-        this.inGame.table.append(dom);
+        //this.inGame.document.getElementById("target").append(dom);
     }
-    
     take(card){
         this.hand.push(card);
         alert(this.name + " got " + card.id)
@@ -113,10 +105,10 @@ class Deck{
         player.take(card);
         alert('I delt to: ' + player.name);
     }
-    //joinGame(game){
-        //alert("joined game")
-        //this.inGame = game;
-    //}
+    joinGame(game){
+        alert("joined game")
+        this.inGame = game;
+    }
     
 }
 
@@ -131,10 +123,10 @@ class Card{
         target = target || TARGET;
         var cardCopy = CARD.cloneNode(true);
         cardCopy.innerHTML = "" + (this.id);
-        cardCopy.style.backgroundPositionX = -(this.id) + "00%"
-        cardCopy.style.backgroundPositionY = Math.floor(this.id/13) + "00%";
-
-
+        cardCopy.style.backgroundPositionX = -this.id%13 + "00%";
+        cardCopy.style.backgroundPositionY = -this.id%4 + "00%";
+        TARGET.append(cardCopy);
+    }
 }
 
 
